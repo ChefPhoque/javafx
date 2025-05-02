@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<Pane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+      prefHeight="520.0" prefWidth="729.0"
+      fx:controller="fsiAdministration.controllers.ModifierEtudiantController">
+
+    <children>
+        <VBox spacing="15" alignment="TOP_CENTER" prefWidth="729" prefHeight="520">
+            <!-- Menu bar -->
+            <MenuBar prefWidth="729">
+                <menus>
+                    <Menu mnemonicParsing="false" text="Gestion étudiant">
+                        <items>
+                            <MenuItem fx:id="bListeEtud" mnemonicParsing="false" onAction="#bListEtudClick" text="liste étudiant" />
+                            <MenuItem fx:id="bAjouterEtud" mnemonicParsing="false" onAction="#bAjouterEtudClick" text="ajouter un étudiant" />
+                            <MenuItem fx:id="bEditEtud" mnemonicParsing="false" onAction="#bEditClick" text="Modifier un étudiant" />
+                            <MenuItem fx:id="bDeletEtud" mnemonicParsing="false" onAction="#bdeletClick" text="Supprimer un étudiant" />
+
+
+                        </items>
+                    </Menu>
+                    <Menu fx:id="bCours" mnemonicParsing="false" text="Cours">
+                        <items>
+                            <MenuItem fx:id="bListeCours" mnemonicParsing="false" onAction="#bListeCoursClick" text="Liste des cours" />
+                            <MenuItem fx:id="bAjouterCours" mnemonicParsing="false" onAction="#bAjouterCoursClick" text="Ajouter un cours" />
+                            <MenuItem fx:id="bModifierCours" mnemonicParsing="false" onAction="#bModifierCoursClick" text="Modifier un cours" />
+                            <MenuItem fx:id="bSupprimerCours" mnemonicParsing="false" onAction="#bSupprimerCoursClick" text="Supprimer un cours" />
+                        </items>
+                    </Menu>
+
+                    <Menu mnemonicParsing="false" text="Gestion section">
+                        <items>
+                            <MenuItem fx:id="bListeSection" mnemonicParsing="false" onAction="#bListeSectionClick" text="Liste des sections" />
+                            <MenuItem fx:id="bAjouterSection" mnemonicParsing="false" onAction="#bAjouterSectionClick" text="ajouter une section" />
+                            <MenuItem fx:id="bEditSection" mnemonicParsing="false" onAction="#bEditrSectionClick" text="Modifier une section" />
+                            <MenuItem fx:id="bListeEtudiantsSection" mnemonicParsing="false" onAction="#bListeEtudiantsSectionClick" text="Liste des étudiants d'une section" />
+                            <MenuItem fx:id="bListeCoursSection" mnemonicParsing="false" onAction="#bListeCoursSectionClick" text="Liste des cours d'une section" />
+
+                        </items>
+                    </Menu>
+                    <Menu text="Autres">
+                        <items>
+                            <MenuItem text="Accueil" onAction="#bAccueilClick"/>
+                            <MenuItem text="Quitter" onAction="#bQuitterClick"/>
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+
+            <!-- Titre -->
+            <Label text="MODIFICATION D'UN ÉTUDIANT" textFill="#024010">
+                <font>
+                    <Font name="System Bold" size="24.0"/>
+                </font>
+            </Label>
+
+            <!-- Formulaire centré -->
+            <GridPane hgap="10" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" prefWidth="180"/>
+                    <ColumnConstraints prefWidth="400"/>
+                </columnConstraints>
+
+                <!-- Sélection étudiant -->
+                <Label text="Sélectionner un étudiant :" GridPane.rowIndex="0" GridPane.columnIndex="0" textFill="#024010">
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+                </Label>
+                <ListView fx:id="lvEtudiant" onMouseClicked="#handleEtudiantSelection" prefHeight="80.0" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <!-- Nom -->
+                <Label text="Nom :" GridPane.rowIndex="1" GridPane.columnIndex="0" textFill="#024010">
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+                </Label>
+                <TextField fx:id="tfNomEtud" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <!-- Prénom -->
+                <Label text="Prénom :" GridPane.rowIndex="2" GridPane.columnIndex="0" textFill="#024010">
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+                </Label>
+                <TextField fx:id="tfPrenomEtud" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <!-- Section -->
+                <Label text="Section :" GridPane.rowIndex="3" GridPane.columnIndex="0" textFill="#024010">
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+                </Label>
+                <ListView fx:id="lvSectionEtud" prefHeight="80.0" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            </GridPane>
+            <Label text="Date de naissance :" GridPane.rowIndex="4" GridPane.columnIndex="0" textFill="#024010">
+                <font>
+                    <Font name="System Bold" size="14"/>
+                </font>
+            </Label>
+            <DatePicker fx:id="dpDateNaissEtud" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <!-- Boutons -->
+            <HBox spacing="30" alignment="CENTER">
+                <Button fx:id="bModifier" text="MODIFIER" textFill="#024010" onAction="#bModifierClick" prefWidth="150">
+                    <font>
+                        <Font name="System Bold" size="16.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="bAnnuler" text="ANNULER" textFill="#024010" onAction="#bAnnulerClick" prefWidth="150">
+                    <font>
+                        <Font name="System Bold" size="16.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="bRetour" text="RETOUR" textFill="#024010" onAction="#bRetourClick" prefWidth="150">
+                    <font>
+                        <Font name="System Bold" size="16.0"/>
+                    </font>
+                </Button>
+            </HBox>
+        </VBox>
+    </children>
+</Pane>

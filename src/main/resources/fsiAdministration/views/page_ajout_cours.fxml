@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<Pane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fsiAdministration.controllers.AjouterCoursController" prefHeight="478.0" prefWidth="729.0">
+    <children>
+        <!-- Menu principal avec logo en haut à droite -->
+        <VBox layoutX="-1.0" prefHeight="48.0" prefWidth="729.0">
+            <children>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="729.0">
+                    <!-- Menu Bar -->
+                    <MenuBar prefHeight="26.0" prefWidth="711.0">
+                        <menus>
+                            <Menu mnemonicParsing="false" text="Gestion étudiant" style="-fx-text-fill: #024010;">
+                                <items>
+                                    <MenuItem fx:id="bListeEtud" mnemonicParsing="false" onAction="#bListEtudClick" text="Liste étudiant" />
+                                    <MenuItem fx:id="bAjouterEtud" mnemonicParsing="false" onAction="#bAjouterEtudClick" text="Ajouter un étudiant" />
+                                    <MenuItem fx:id="bEditEtud" mnemonicParsing="false" onAction="#bEditClick" text="Modifier un étudiant" />
+                                    <MenuItem fx:id="bDeletEtud" mnemonicParsing="false" onAction="#bdeletClick" text="Supprimer un étudiant" />
+                                </items>
+                            </Menu>
+
+                            <Menu mnemonicParsing="false" text="Gestion section" style="-fx-text-fill: #024010;">
+                                <items>
+                                    <MenuItem fx:id="bListeSection" mnemonicParsing="false" onAction="#bListeSectionClick" text="Liste des sections" />
+                                    <MenuItem fx:id="bAjouterSection" mnemonicParsing="false" onAction="#bAjouterSectionClick" text="Ajouter une section" />
+                                    <MenuItem fx:id="bEditSection" mnemonicParsing="false" onAction="#bEditrSectionClick" text="Modifier une section" />
+                                    <MenuItem fx:id="bListeEtudiantsSection" mnemonicParsing="false" onAction="#bListeEtudiantsSectionClick" text="Liste des étudiants d'une section" />
+                                    <MenuItem fx:id="bListeCoursSection" mnemonicParsing="false" onAction="#bListeCoursSectionClick" text="Liste des cours d'une section" />
+                                </items>
+                            </Menu>
+
+                            <Menu fx:id="bCours" mnemonicParsing="false" text="Cours" style="-fx-text-fill: #024010;">
+                                <items>
+                                    <MenuItem fx:id="bListeCours" mnemonicParsing="false" onAction="#bListeCoursClick" text="Liste des cours" />
+                                    <MenuItem fx:id="bAjouterCours" mnemonicParsing="false" onAction="#bAjouterCoursClick" text="Ajouter un cours" />
+                                    <MenuItem fx:id="bModifierCours" mnemonicParsing="false" onAction="#bModifierCoursClick" text="Modifier un cours" />
+                                    <MenuItem fx:id="bSupprimerCours" mnemonicParsing="false" onAction="#bSupprimerCoursClick" text="Supprimer un cours" />
+                                </items>
+                            </Menu>
+
+                            <Menu fx:id="bAutres" mnemonicParsing="false" text="Autres" style="-fx-text-fill: #024010;">
+                                <items>
+                                    <MenuItem fx:id="bAccueil" mnemonicParsing="false" onAction="#bAccueilClick" text="Accueil" />
+                                    <MenuItem fx:id="bQuitter" mnemonicParsing="false" onAction="#bQuitterClick" text="Quitter" />
+                                </items>
+                            </Menu>
+                        </menus>
+                    </MenuBar>
+
+                    <!-- Logo à droite -->
+                </HBox>
+            </children>
+        </VBox>
+
+        <!-- Section pour l'ajout de cours -->
+        <VBox layoutY="54.0" prefHeight="200.0" prefWidth="729.0" spacing="10">
+            <children>
+                <!-- Titre -->
+                <Label text="AJOUT D'UN NOUVEAU COURS" textFill="#024010" alignment="CENTER" prefWidth="730.0" style="-fx-font-size: 24px; -fx-font-weight: bold;">
+                    <font>
+                        <Font name="Arial" size="24.0" />
+                    </font>
+                </Label>
+
+                <!-- Libellé du cours -->
+                <HBox fx:id="hbLibelleCours" prefHeight="44.0" prefWidth="729.0" spacing="10">
+                    <children>
+                        <Label text="Libellé du cours" prefWidth="165.0" textFill="#024010" style="-fx-font-size: 14px;">
+                            <font>
+                                <Font name="Arial" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="tfLibelleCours" prefWidth="205.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #d3d3d3; -fx-border-width: 1;" />
+                    </children>
+                </HBox>
+
+                <!-- Description du cours -->
+                <HBox fx:id="hbDescriptionCours" prefHeight="44.0" prefWidth="729.0" spacing="10">
+                    <children>
+                        <Label text="Description du cours" prefWidth="165.0" textFill="#024010" style="-fx-font-size: 14px;">
+                            <font>
+                                <Font name="Arial" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="tfDescriptionCours" prefWidth="377.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #d3d3d3; -fx-border-width: 1;" />
+                    </children>
+                </HBox>
+
+                <!-- Section étudiant -->
+                <HBox fx:id="hbSectionEtudiant" prefHeight="44.0" prefWidth="729.0" spacing="10">
+                    <children>
+                        <Label text="Section étudiant" prefWidth="165.0" textFill="#024010" style="-fx-font-size: 14px;">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <ListView fx:id="lvSections" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #d3d3d3; -fx-border-width: 1;" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+        <!-- Actions en bas de la page -->
+        <HBox layoutY="239.0" prefHeight="100.0" prefWidth="729.0" spacing="20" style="-fx-padding: 15;">
+            <children>
+                <Button fx:id="bEnregistrer" text="ENREGISTRER" textFill="#ffffff" onAction="#bEnregistrerClick" prefWidth="166.0" style="-fx-background-color: #8bc34a; -fx-font-weight: bold;" />
+                <Button fx:id="bEffacer" text="EFFACER" textFill="#ffffff" onAction="#bEffacerClick" prefWidth="183.0" style="-fx-background-color: #f44336; -fx-font-weight: bold;" />
+                <Button fx:id="bRetour" text="RETOUR" textFill="#ffffff" onAction="#bRetourClick" prefWidth="305.0" style="-fx-background-color: #03a9f4; -fx-font-weight: bold;" />
+            </children>
+        </HBox>
+    </children>
+</Pane>
