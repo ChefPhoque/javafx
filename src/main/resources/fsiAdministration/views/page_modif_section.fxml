@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<Pane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+      prefHeight="520.0" prefWidth="729.0"
+      fx:controller="fsiAdministration.controllers.ModifierSectionController">
+
+    <children>
+        <VBox spacing="20" alignment="TOP_CENTER" prefWidth="729" style="-fx-background-color: #f4f4f4;">
+
+            <!-- Menu -->
+            <MenuBar prefHeight="26.0" prefWidth="730.0">
+                <menus>
+                    <Menu text="Gestion étudiant">
+                        <items>
+                            <MenuItem text="Liste étudiant" onAction="#bListEtudClick" />
+                            <MenuItem text="Ajouter un étudiant" onAction="#bAjouterEtudClick" />
+                            <MenuItem text="Modifier un étudiant" onAction="#bEditClick" />
+                            <MenuItem text="Supprimer un étudiant" onAction="#bdeletClick" />
+                        </items>
+                    </Menu>
+                    <Menu text="Cours">
+                        <items>
+                            <MenuItem text="Liste des cours" onAction="#bListeCoursClick" />
+                            <MenuItem text="Ajouter un cours" onAction="#bAjouterCoursClick" />
+                            <MenuItem text="Modifier un cours" onAction="#bModifierCoursClick" />
+                            <MenuItem text="Supprimer un cours" onAction="#bSupprimerCoursClick" />
+                        </items>
+                    </Menu>
+                    <Menu text="Gestion section">
+                        <items>
+                            <MenuItem text="Liste des sections" onAction="#bListeSectionClick" />
+                            <MenuItem text="Ajouter une section" onAction="#bAjouterSectionClick" />
+                            <MenuItem text="Modifier une section" onAction="#bEditrSectionClick" />
+                            <MenuItem text="Étudiants d'une section" onAction="#bListeEtudiantsSectionClick" />
+                            <MenuItem text="Cours d'une section" onAction="#bListeCoursSectionClick" />
+                        </items>
+                    </Menu>
+                    <Menu text="Autres">
+                        <items>
+                            <MenuItem text="Accueil" onAction="#bAccueilClick" />
+                            <MenuItem text="Deconnexion" onAction="#bDeconnexionClick" />
+                            <MenuItem text="Quitter" onAction="#bQuitterClick" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+            <!-- Titre -->
+            <Label text="MODIFICATION D'UNE SECTION" textFill="#024010">
+                <font>
+                    <Font name="System Bold" size="24.0"/>
+                </font>
+            </Label>
+
+            <!-- Logo -->
+            <ImageView layoutX="10.0" layoutY="60.0" fitHeight="67.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/FSI_logo.png" />
+                </image>
+            </ImageView>
+
+            <!-- Formulaire -->
+            <GridPane hgap="10" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" prefWidth="180"/>
+                    <ColumnConstraints prefWidth="400"/>
+                </columnConstraints>
+
+                <!-- Sélection -->
+                <Label text="Sélectionner une section :" GridPane.rowIndex="0" GridPane.columnIndex="0" textFill="#024010"/>
+                <ListView fx:id="lvSections" prefHeight="100.0" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <!-- Libellé section -->
+                <Label text="Libellé :" GridPane.rowIndex="2" GridPane.columnIndex="0" textFill="#024010"/>
+                <TextField fx:id="tfLibelleSection" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- Boutons -->
+            <HBox spacing="30" alignment="CENTER">
+                <Button fx:id="bModifier" text="MODIFIER" textFill="#ffffff" style="-fx-background-color: #024010;" onAction="#bModifierClick" prefWidth="150"/>
+                <Button fx:id="bAnnuler" text="ANNULER" textFill="#ffffff" style="-fx-background-color: #024010;" onAction="#bAnnulerClick" prefWidth="150"/>
+                <Button fx:id="bRetour" text="RETOUR" textFill="#ffffff" style="-fx-background-color: #024010;" onAction="#bRetourClick" prefWidth="150"/>
+            </HBox>
+        </VBox>
+    </children>
+</Pane>

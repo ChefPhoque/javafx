@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<Pane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fsiAdministration.controllers.ListeCoursController" prefHeight="500.0" prefWidth="730.0">
+    <children>
+
+        <!-- Menu -->
+        <VBox layoutX="0.0" layoutY="0.0" prefWidth="730.0">
+            <children>
+                <MenuBar prefHeight="26.0" prefWidth="730.0">
+                    <menus>
+                        <Menu text="Gestion étudiant">
+                            <items>
+                                <MenuItem text="Liste étudiant" onAction="#bListEtudClick" />
+                                <MenuItem text="Ajouter un étudiant" onAction="#bAjouterEtudClick" />
+                                <MenuItem text="Modifier un étudiant" onAction="#bEditClick" />
+                                <MenuItem text="Supprimer un étudiant" onAction="#bdeletClick" />
+                            </items>
+                        </Menu>
+                        <Menu text="Cours">
+                            <items>
+                                <MenuItem text="Liste des cours" onAction="#bListeCoursClick" />
+                                <MenuItem text="Ajouter un cours" onAction="#bAjouterCoursClick" />
+                                <MenuItem text="Modifier un cours" onAction="#bModifierCoursClick" />
+                                <MenuItem text="Supprimer un cours" onAction="#bSupprimerCoursClick" />
+                            </items>
+                        </Menu>
+                        <Menu text="Gestion section">
+                            <items>
+                                <MenuItem text="Liste des sections" onAction="#bListeSectionClick" />
+                                <MenuItem text="Ajouter une section" onAction="#bAjouterSectionClick" />
+                                <MenuItem text="Modifier une section" onAction="#bEditrSectionClick" />
+                                <MenuItem text="Étudiants d'une section" onAction="#bListeEtudiantsSectionClick" />
+                                <MenuItem text="Cours d'une section" onAction="#bListeCoursSectionClick" />
+                            </items>
+                        </Menu>
+                        <Menu text="Autres">
+                            <items>
+                                <MenuItem text="Accueil" onAction="#bAccueilClick" />
+                                <MenuItem text="Deconnexion" onAction="#bDeconnexionClick" />
+                                <MenuItem text="Quitter" onAction="#bQuitterClick" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </children>
+        </VBox>
+
+        <!-- Titre + logo -->
+        <HBox layoutY="26.0" prefWidth="730.0" alignment="CENTER_LEFT" spacing="20">
+            <children>
+                <Label text="LISTE DES COURS" textFill="#024010">
+                    <font>
+                        <Font name="System Bold" size="24.0"/>
+                    </font>
+                </Label>
+                <Pane HBox.hgrow="ALWAYS" />
+                <ImageView fitHeight="67.0" fitWidth="80.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/FSI_logo.png"/>
+                    </image>
+                </ImageView>
+            </children>
+        </HBox>
+
+        <!-- TableView -->
+        <TableView fx:id="tvCours" layoutX="20.0" layoutY="110.0" prefWidth="690.0" prefHeight="300.0">
+            <columns>
+                <TableColumn fx:id="tcLibelleCours" text="Libellé" prefWidth="200.0"/>
+                <TableColumn fx:id="tcDescriptionCours" text="Description" prefWidth="460.0"/>
+            </columns>
+        </TableView>
+
+        <!-- Boutons -->
+        <HBox layoutX="20.0" layoutY="430.0" spacing="20">
+            <children>
+                <Button fx:id="bRetour" text="RETOUR" onAction="#bRetourClick" textFill="#024010" prefWidth="150.0">
+                    <font>
+                        <Font name="System Bold" size="16.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="bActualiser" text="ACTUALISER" onAction="#bActualiserClick" textFill="#024010" prefWidth="150.0">
+                    <font>
+                        <Font name="System Bold" size="16.0"/>
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+
+    </children>
+</Pane>
