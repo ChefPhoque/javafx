@@ -140,4 +140,23 @@ public class EtudiantDAO extends DAO<Etudiant> {
 
         return mesEtud;
     }
+    public int getNombreEtudiantsDansSection(int idSection) {
+        int nombreEtudiants = 0;
+        String sql = "SELECT COUNT(idEtudiant) AS total FROM Etudiant WHERE idSection = ?";
+
+        try (Connection connect = ConnexionPGSQL.getConnection();
+             PreparedStatement statement = connect.prepareStatement(sql)) {
+
+            statement.setInt(1, idSection);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    nombreEtudiants = rs.getInt("total");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nombreEtudiants;
+    }
 }

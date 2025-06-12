@@ -72,7 +72,8 @@
         <TableView fx:id="tvCours" layoutX="20.0" layoutY="110.0" prefWidth="690.0" prefHeight="300.0">
             <columns>
                 <TableColumn fx:id="tcLibelleCours" text="Libellé" prefWidth="200.0"/>
-                <TableColumn fx:id="tcDescriptionCours" text="Description" prefWidth="460.0"/>
+                <TableColumn fx:id="tcDescriptionCours" text="Description" prefWidth="350.0"/>
+                <TableColumn fx:id="tcVolumeHoraire" text="Volume Horaire" prefWidth="140.0"/>
             </columns>
         </TableView>
 

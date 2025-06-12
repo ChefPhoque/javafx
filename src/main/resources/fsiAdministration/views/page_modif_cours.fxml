@@ -49,6 +49,7 @@
                     </Menu>
                 </menus>
             </MenuBar>
+
             <!-- Titre -->
             <Label text="MODIFICATION D'UN COURS" textFill="#024010">
                 <font>
@@ -89,6 +90,15 @@
                 <!-- Liste des sections -->
                 <Label text="Sélectionner une section :" GridPane.rowIndex="4" GridPane.columnIndex="0" textFill="#024010"/>
                 <ListView fx:id="lvSections" prefHeight="100.0" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <!-- Liste des professeurs -->
+                <Label text="Sélectionner un professeur :" GridPane.rowIndex="5" GridPane.columnIndex="0" textFill="#024010"/>
+                <ListView fx:id="lvProfesseurs" prefHeight="100.0" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                <!-- Volume horaire -->
+                <Label text="Volume horaire :" GridPane.rowIndex="6" GridPane.columnIndex="0" textFill="#024010"/>
+                <TextField fx:id="tfVolumeHoraire" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
             </GridPane>
 
             <!-- Boutons -->

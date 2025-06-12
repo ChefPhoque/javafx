@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class ModifierCoursController extends MenuController implements Initializable {
 
     @FXML
-    private TextField tfLibelleCours, tfDescriptionCours;
+    private TextField tfLibelleCours, tfDescriptionCours, tfVolumeHoraire;  // Ajout tfVolumeHoraire
     @FXML
     private ListView<Cours> lvCours;
     @FXML
@@ -65,10 +65,24 @@ public class ModifierCoursController extends MenuController implements Initializ
             return;
         }
 
+        int volumeHoraire;
+        try {
+            volumeHoraire = Integer.parseInt(tfVolumeHoraire.getText());
+        } catch (NumberFormatException e) {
+            System.out.println("Volume horaire invalide !");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Volume horaire incorrect");
+            alert.setContentText("Veuillez saisir un nombre entier valide pour le volume horaire.");
+            alert.showAndWait();
+            return;
+        }
+
         // Mettre à jour le cours
         cours.setLibelleCours(libelle);
         cours.setDescriptionCours(description);
         cours.setLibelleSection(selectedSection);
+        cours.setVolumeHoraire(volumeHoraire);  // mise à jour volume horaire
 
         // Enregistrer la modification dans la base de données
         CoursDAO coursDAO = new CoursDAO();
@@ -88,6 +102,7 @@ public class ModifierCoursController extends MenuController implements Initializ
         // Effacer les champs de texte
         tfLibelleCours.clear();
         tfDescriptionCours.clear();
+        tfVolumeHoraire.clear();
         lvSections.getSelectionModel().clearSelection();
     }
 
@@ -180,6 +195,7 @@ public class ModifierCoursController extends MenuController implements Initializ
             tfLibelleCours.setText(cours.getLibelleCours());
             tfDescriptionCours.setText(cours.getDescriptionCours());
             lvSections.getSelectionModel().select(cours.getLibelleSection());
+            tfVolumeHoraire.setText(String.valueOf(cours.getVolumeHoraire()));  // Affichage volume horaire
         }
     }
 }
