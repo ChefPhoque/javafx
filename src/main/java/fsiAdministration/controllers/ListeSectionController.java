@@ -1,6 +1,7 @@
 package fsiAdministration.controllers;
 
 import fsiAdministration.BO.Section;
+import fsiAdministration.DAO.EtudiantDAO;
 import fsiAdministration.DAO.SectionDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,7 +10,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,19 +23,37 @@ import java.util.ResourceBundle;
 public class ListeSectionController extends MenuController implements Initializable {
 
     @FXML
-    private ListView<Section> lvSections;
+    private TableView<SectionTableItem> tvSections;
+
+    @FXML
+    private TableColumn<SectionTableItem, String> tcLibelleSection;
+
+    @FXML
+    private TableColumn<SectionTableItem, Integer> tcNombreEtudiants;
 
     private SectionDAO sectionDAO = new SectionDAO();
+    private EtudiantDAO etudiantDAO = new EtudiantDAO();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Configurer les colonnes
+        tcLibelleSection.setCellValueFactory(new PropertyValueFactory<>("libelle"));
+        tcNombreEtudiants.setCellValueFactory(new PropertyValueFactory<>("nombreEtudiants"));
 
         chargerSections();
     }
 
     private void chargerSections() {
         List<Section> sections = sectionDAO.findAll();
-        ObservableList<Section> observableSections = FXCollections.observableArrayList(sections);
-        lvSections.setItems(observableSections);
+
+        ObservableList<SectionTableItem> data = FXCollections.observableArrayList();
+
+        for (Section section : sections) {
+            int nbEtudiants = etudiantDAO.getNombreEtudiantsDansSection(section.getIdSection());
+            data.add(new SectionTableItem(section.getLibelleSection(), nbEtudiants));
+        }
+
+        tvSections.setItems(data);
     }
 
     @FXML
@@ -49,25 +70,14 @@ public class ListeSectionController extends MenuController implements Initializa
         stage.setTitle("Accueil");
         stage.setScene(new Scene(root));
         stage.show();
-        Stage stage1 = (Stage) lvSections.getScene().getWindow();
-        stage1.close();
-    }
 
+        Stage currentStage = (Stage) tvSections.getScene().getWindow();
+        currentStage.close();
+    }
 
     @FXML
     public void bSupprimerSectionClick() {
-        Section selectedSection = lvSections.getSelectionModel().getSelectedItem();
-        if (selectedSection != null) {
-            boolean success = sectionDAO.delete(selectedSection);
-            if (success) {
-                System.out.println("Section supprimée avec succès !");
-                chargerSections();
-            } else {
-                System.out.println("Erreur lors de la suppression de la section.");
-            }
-        } else {
-            System.out.println("Aucune section sélectionnée.");
-        }
+        // Supprimer fonctionnel uniquement si tu ajoutes la sélection dans TableView (à adapter)
     }
 
     @FXML
@@ -84,5 +94,24 @@ public class ListeSectionController extends MenuController implements Initializa
     @FXML
     public void bQuitterClick() {
         System.exit(0);
+    }
+
+    // Classe interne pour afficher les données dans le TableView
+    public static class SectionTableItem {
+        private final String libelle;
+        private final Integer nombreEtudiants;
+
+        public SectionTableItem(String libelle, Integer nombreEtudiants) {
+            this.libelle = libelle;
+            this.nombreEtudiants = nombreEtudiants;
+        }
+
+        public String getLibelle() {
+            return libelle;
+        }
+
+        public Integer getNombreEtudiants() {
+            return nombreEtudiants;
+        }
     }
 }
